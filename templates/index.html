@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo App (Choose Model of your choice)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	
+	<style>
+		body {
+			padding: 50px;
+			background-color: #f9f9f9;
+		}
+		h1 {
+			margin-bottom: 50px;
+			text-align: center;
+		}
+		form {
+			max-width: 500px;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 30px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+		}
+		label {
+			font-weight: 600;
+			margin-bottom: 10px;
+		}
+		select {
+			display: block;
+			width: 100%;
+			padding: 10px 15px;
+			font-size: 16px;
+			line-height: 1.5;
+			color: #495057;
+			background-color: #fff;
+			background-image: none;
+			border: 1px solid #ced4da;
+			border-radius: .25rem;
+			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		}
+		input[type="text"] {
+			display: block;
+			width: 100%;
+			padding: 10px 15px;
+			font-size: 16px;
+			line-height: 1.5;
+			color: #495057;
+			background-color: #fff;
+			background-image: none;
+			border: 1px solid #ced4da;
+			border-radius: .25rem;
+			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		}
+		input[type="submit"] {
+			background-color: #007bff;
+			border-color: #007bff;
+			color: #fff;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #0069d9;
+			border-color: #0062cc;
+			color: #fff;
+		}
+	</style>
+</head>
+
+
+<body>
+	<h1>Demo APP</h1>
+	<form action="/predict" method="POST">
+		<label for="dayofyear">Enter the Day :</label>
+        <input type="text" id="dayofyear" name="dayofyear"><br><br>
+
+
+        <label for="hour">Enter the Hour :</label>
+        <input type="text" id="hour" name="hour"><br><br>
+
+        <label for="dayofweek">Enter the Day (In the week) :</label>
+        <input type="text" id="dayofweek" name="dayofweek"><br><br>
+
+        <label for="quarter">Enter the Quarter :</label>
+        <input type="text" id="quarter" name="quarter"><br><br>
+
+
+        <label for="month">Enter the Month :</label>
+        <input type="text" id="month" name="month"><br><br>
+
+        <label for="MODEL">Choose the Model you want to use :</label>
+		<select id="MODEL" name="MODEL">
+			{% for value in ['Random Forest' , 'MLP'] %}
+				<option value="{{ value }}">{{ value }}</option>
+			{% endfor %}
+		</select><br><br>
+
+
+        <input type="submit" value="Predict">
+    </form>
+
+
+
+    {% if prediction_text %}
+    <div class="alert alert-success mt-3">
+        <strong>{{ prediction_text }}</strong>
+    </div>
+    {% endif %}
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </body>
+    </html>
+
+		
